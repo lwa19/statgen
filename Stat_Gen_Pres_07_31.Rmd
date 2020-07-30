@@ -1,0 +1,45 @@
+---
+title: "Maximum Likelihood Estimation"
+author: "Apple Lee"
+date: "7/30/2020"
+output: html_document
+---
+
+```{r}
+# Figure 5.1 Coin Flipping
+x<-5 # determines observed trials number
+n<-30 # total number of trials
+theta<-seq(0.1,0.9,by=0.05) # range of theta values
+log_lh<-c() # loglikelihood function
+num<-length(theta) # number of elements in theta
+for (i in 1:num){
+  log_lh[i]<--2*log(dbinom(x,n,theta[i]))
+}
+
+min_lh<-min(log_lh) # identify minimum loglikelihood
+print(min_lh)
+min_theta<-theta[log_lh==min_lh] # identify theta for minimum loglikelihood
+print(c(min_lh,min_theta))
+
+plot(theta,log_lh,type='l',main="Theta vs. -2loglikelihood",xlab="Theta",ylab="-2loglikelihood",axes=FALSE) # plot
+axis(side=1,at=seq(0,1,by=0.2))
+axis(side=2,at=seq(0,100,by=10))
+abline(h=min_lh,v=min_theta,lty=2)
+
+# Estimation of the likelihood in observing 5 tails in 30 trials/coin-flips based on a range of theta values (probability)
+# determines the theta value that maximizes the probability of obtaining data desired
+# minimization of -2*loglikelihood is equivalent to maximization of probability likelihood
+# computationally easier to use -2*loglikelihood
+# ML estimation of theta indicates most likely value of theta that makes obtained data most probable
+```
+
+```{r}
+# Figure 5.2
+n<-seq(10,100,by=10)
+theta<-seq(0.1,0.55,by=0.05)
+plot(n,theta,xlab='Number of Trials',ylab='Mean Estimate of Theta',type='l')
+abline(h=0.5,lty=2)
+
+# Average estimation based on 100 replications
+# With increasing sample size, estimation more closely resembles true value (unbiasedness) and variance of estimation decreases
+```
