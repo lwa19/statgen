@@ -19,10 +19,10 @@ A quick refresher on Hardy-Weinberg equilibrium:
 $$ p + q = 1 $$
 $$ p^2 + 2pq + q^2 = 1 $$
 
-We can use likelihood-ratio testing to detect violation of Hardy-Weinberg equilibrium given disruptive selection. We will first model it with a multinomial distribution Multi(\textbf{X}:n, \textbf{\theta}): 
+We can use likelihood-ratio testing to detect violation of Hardy-Weinberg equilibrium given disruptive selection. We will first model it with a multinomial distribution Multi($\textbf{X}:n, \theta$): 
 
 $$ \frac{n!}{x_1! x_2! ... x_k!} \theta^{x_1}_{1} \theta^{x_2}_{2} ... \theta^{x_k}_{k} $$
-where k is the number of outcomes generated with fixed probabilities \theta_1, \theta_2, ... \theta_k. 
+where k is the number of outcomes generated with fixed probabilities $\theta_1, \theta_2, ... \theta_k$. 
 
 In a random sample of size $n = \Sigma x_i$, the genotype frequencies for AA, Aa, and aa can be written as:
 $$ \textit{f}_1 = \frac{p^2}{t} $$
@@ -40,7 +40,7 @@ To generate the ML equation, we can simply take the log of the likelihood equati
 
 $$LL_A = -2(log \frac{n!}{x_1! x_2! x_3!} + log(\theta_{A_1})^{x_1} + log(\theta_{A_2})^{x_2} + log(\theta_{A_3})^{x_3})$$
 $$= -2(c + {x_1}log(\theta_{A_1}) + {x_2}log(\theta_{A_2}) + {x_3}log(\theta_{A_3})$$
-Under the alternative hypothesis, only one among the three \theta values is constrained (e.g. $\theta_{A3} = 1-\theta_{A1} - \theta_{A2}). Under the more parsimonious null hypothesis, the frequencies must obey the HWE, therefore satisfying: 
+Under the alternative hypothesis, only one among the three $\theta$ values is constrained (e.g. $\theta_{A3} = 1-\theta_{A1} - \theta_{A2}$). Under the more parsimonious null hypothesis, the frequencies must obey the HWE, therefore satisfying: 
 
 $$ p_0 = \frac{2x_1 + x_2}{2n} $$
 $$ q_0 = 1-p_0 $$
@@ -112,6 +112,6 @@ kable(mat)
 ```{r workflow commands, eval=FALSE, echo=FALSE}
 wflow_status()
 wflow_publish(c('analysis/index.Rmd', 'analysis/statistical_power.Rmd'), 'ch5 table 5.5 recreation + HWE example explanation')
-# wflow_publish('analysis/statistical_power.Rmd', 'please write commit message')
+wflow_publish('analysis/statistical_power.Rmd', 'fixing up some latex code')
 wflow_git_push()
 ```
