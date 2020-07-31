@@ -8,4 +8,9 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+
+## Overview
+This is a project affiliated with the University of Chicago BSCD Quantitative Biology Fellowship in summer 2020. We aim to read through selected book chapters from Statistical Genetics (Neale et.al. 2008) and recreate some code and examples as exercise. 
+
+## Chapter 5
+Explanation of Hardy-Weinberg Equilibrium example in section 5.4 is recreated [here](statistical_power.html) with modified code and table. 

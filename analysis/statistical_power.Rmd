@@ -1,0 +1,117 @@
+---
+title: "Ch5 Statistical Power"
+author: "Lijia Wang"
+date: "2020-07-29"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+This document is a summary of Chapter 5, "Statstical Power" in Neale et. al.. We will be recreating some of the examples given in the book chapter. Here I will try to explain and recreate table 5.5 on "Power to detect the effect of disrruptive selection on HWE in $n = 500$ and $\alpha = 0.05$"
+```{r, echo=FALSE}
+library(knitr)
+```
+
+### Setting up the HWE
+A quick refresher on Hardy-Weinberg equilibrium: 
+$$ p + q = 1 $$
+$$ p^2 + 2pq + q^2 = 1 $$
+
+We can use likelihood-ratio testing to detect violation of Hardy-Weinberg equilibrium given disruptive selection. We will first model it with a multinomial distribution Multi(\textbf{X}:n, \textbf{\theta}): 
+
+$$ \frac{n!}{x_1! x_2! ... x_k!} \theta^{x_1}_{1} \theta^{x_2}_{2} ... \theta^{x_k}_{k} $$
+where k is the number of outcomes generated with fixed probabilities \theta_1, \theta_2, ... \theta_k. 
+
+In a random sample of size $n = \Sigma x_i$, the genotype frequencies for AA, Aa, and aa can be written as:
+$$ \textit{f}_1 = \frac{p^2}{t} $$
+$$ \textit{f}_2 = \frac{2pq-r}{t} $$
+$$ \textit{f}_3 = \frac{q^2}{t} $$
+
+$$ t = p^2 + (2pq-r) + q^2 $$
+
+Note the "-r" term that we typically do not see in the classical H-W equations. This is the non-centrality parameter (NCP) which we will use to model disruptions with. If $r=0$, then $\lambda=0$ and we are at H-W equilibrium
+
+
+### Generating ML equations
+
+To generate the ML equation, we can simply take the log of the likelihood equation of the multinomial distribution (as described above), and adapt it to the 3 genotypes AA, Aa, and aa, thus $k=3$. The LL equation would look like: 
+
+$$LL_A = -2(log \frac{n!}{x_1! x_2! x_3!} + log(\theta_{A_1})^{x_1} + log(\theta_{A_2})^{x_2} + log(\theta_{A_3})^{x_3})$$
+$$= -2(c + {x_1}log(\theta_{A_1}) + {x_2}log(\theta_{A_2}) + {x_3}log(\theta_{A_3})$$
+Under the alternative hypothesis, only one among the three \theta values is constrained (e.g. $\theta_{A3} = 1-\theta_{A1} - \theta_{A2}). Under the more parsimonious null hypothesis, the frequencies must obey the HWE, therefore satisfying: 
+
+$$ p_0 = \frac{2x_1 + x_2}{2n} $$
+$$ q_0 = 1-p_0 $$
+$$\theta_{01} = p_0^2 $$
+$$\theta_{02} = 2p_0 q_0 $$
+$$\theta_{03} = q_0^2 $$
+
+But the ML equation is almost the exact same: 
+
+$$LL_0= -2(c + {x_1}log(\theta_{0_1}) + {x_2}log(\theta_{0_2}) + {x_3}log(\theta_{0_3})$$
+
+Lastly, the test statistic is calculated by: 
+$$ T = LL_0(\theta_{0}; \textbf{X},n) - LL_A(\theta_{A}; \textbf{X},n) $$
+And distributed with \chi^2(1,\lambda). 
+
+### Analyzing statistical power
+```{r}
+# Code adopted from Neale 2008, Panel 5.2
+N = 500
+p = c(0.1, 0.3, 0.5)
+r = c(0.01, 0.05, 0.1)    # non-centrality parameter
+q = 1-p
+
+mat = matrix(ncol = 4, nrow = 9)
+row = 1
+
+for (indp in 1:3) {
+  for (indr in 1:3) {
+    pv = p[indp]
+    rv = r[indr]
+    qv = q[indp]
+    
+    # model population distribution and distortion
+    fr = c(pv^2, 2*pv*qv-rv, qv^2)
+    fr = fr/sum(fr)                   # normalization 
+    onfr = round(N*fr)                # observed frequency
+    
+    # estimate p and q to expected frequency under H-W
+    pe = (onfr[1]*2 + onfr[2])/(2*N)
+    qe = 1-pe
+    efr = c(pe^2, 2*pe*qe, qe^2)
+    logLA = 0
+    for (i in 1:3) {
+      logLA = logLA + onfr[i]*log(fr[i])
+    }
+    logL0 = 0
+    for (i in 1:3) {
+      logL0 = logL0 + onfr[i]*log(efr[i])
+    }
+    
+    logLA = -2*logLA
+    logL0 = -2*logL0
+    lambda = logL0 - logLA                  # test statistic is chisq(1, lambda)
+    alpha = 0.5
+    df = 1
+    c = qchisq(alpha, df, lower.tail = F)                     # critical value
+    power = pchisq(c, df = df, ncp = lambda, lower.tail = F)  # 1-beta, power
+    beta = 1 - power                                          # beta
+  
+    mat[row,] = c(p[indp], r[indr], lambda, power)
+    row = row + 1
+  }
+  colnames(mat) = c('Frequency p','Effect size r', 'lambda', 'power')
+}
+kable(mat)
+```
+
+
+```{r workflow commands, eval=FALSE, echo=FALSE}
+wflow_status()
+wflow_publish(c('analysis/index.Rmd', 'analysis/statistical_power.Rmd'), 'ch5 table 5.5 recreation + HWE example explanation')
+# wflow_publish('analysis/statistical_power.Rmd', 'please write commit message')
+wflow_git_push()
+```
