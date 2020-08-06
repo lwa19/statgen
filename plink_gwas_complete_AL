@@ -1,0 +1,457 @@
+### gwas_plink_gardner
+
+qsub -I
+module load gcc/6.2.0
+module load plink/1.07
+
+plink --file hapmap1 --make-bed --out hapmap1
+
+plink --bfile hapmap1 --geno 0.1 --maf 0.01 --mind 0.1
+Writing this text to log file [ plink.log ]
+Analysis started: Thu Aug  6 02:00:26 2020
+
+Options in effect:
+	--bfile hapmap1
+	--geno 0.1
+	--maf 0.01
+	--mind 0.1
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+0 of 89 individuals removed for low genotyping ( MIND > 0.1 )
+Total genotyping rate in remaining individuals is 0.99441
+859 SNPs failed missingness test ( GENO > 0.1 )
+16994 SNPs failed frequency test ( MAF < 0.01 )
+After frequency and genotyping pruning, there are 65803 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+
+Analysis finished: Thu Aug  6 02:00:27 2020
+
+plink --bfile hapmap1 --missing --out miss_stat
+Writing this text to log file [ miss_stat.log ]
+Analysis started: Thu Aug  6 02:03:12 2020
+
+Options in effect:
+	--bfile hapmap1
+	--missing
+	--out miss_stat
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+Writing individual missingness information to [ miss_stat.imiss ] 
+Writing locus missingness information to [ miss_stat.lmiss ] 
+Total genotyping rate in remaining individuals is 0.99441
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 83534 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+
+Analysis finished: Thu Aug  6 02:03:13 2020
+
+plink --bfile hapmap1 --freq --out freq_stat
+Writing this text to log file [ freq_stat.log ]
+Analysis started: Thu Aug  6 02:04:35 2020
+
+Options in effect:
+	--bfile hapmap1
+	--freq
+	--out freq_stat
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+Writing allele frequencies (founders-only) to [ freq_stat.frq ] 
+
+Analysis finished: Thu Aug  6 02:04:36 2020
+
+plink --bfile hapmap1 --freq --within pop.phe --out freq_stat
+Web-based version check ( --noweb to skip )
+Recent cached web-check found...Problem connecting to web
+
+Writing this text to log file [ freq_stat.log ]
+Analysis started: Thu Aug  6 02:12:21 2020
+
+Options in effect:
+	--bfile hapmap1
+	--freq
+	--within pop.phe
+	--out freq_stat
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Reading clusters from [ pop.phe ]
+89 of 89 individuals assigned to 2 cluster(s)
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+Writing stratified allele frequencies (founders-only) to [ freq_stat.frq.strat ] 
+
+Analysis finished: Thu Aug  6 02:12:22 2020
+
+plink --bfile hapmap1 --assoc --out as1
+Writing this text to log file [ as1.log ]
+Analysis started: Thu Aug  6 02:13:58 2020
+
+Options in effect:
+	--bfile hapmap1
+	--assoc
+	--out as1
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.99441
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 83534 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+Writing main association results to [ as1.assoc ] 
+
+Analysis finished: Thu Aug  6 02:13:58 2020
+
+[ylee00@cri16cn002 hapmap1]$ head as1.assoc
+ CHR         SNP         BP   A1      F_A      F_U   A2        CHISQ            P           OR 
+   1   rs6681049          1    1   0.1591   0.2667    2        3.067      0.07991       0.5203 
+   1   rs4074137          2    1  0.07955  0.07778    2     0.001919       0.9651        1.025 
+   1   rs7540009          3    0        0        0    2           NA           NA           NA 
+   1   rs1891905          4    1   0.4091      0.4    2      0.01527       0.9017        1.038 
+   1   rs9729550          5    1   0.1705  0.08889    2        2.631       0.1048        2.106 
+   1   rs3813196          6    1  0.03409  0.02222    2       0.2296       0.6318        1.553 
+   1   rs6704013          7    0        0        0    2           NA           NA           NA 
+   1    rs307347          8    0        0        0    2           NA           NA           NA 
+   1   rs9439440          9    0        0        0    2           NA           NA           NA 
+[ylee00@cri16cn002 hapmap1]$ sort --key=7 -nr as1.assoc | head
+  22  rs13055462      82998    1   0.4318   0.2889    2        3.947      0.04695        1.871 
+  22  rs13054355      82194    0        0        0    2           NA           NA           NA 
+  22  rs12628795      82095    1   0.1591   0.2333    2        1.553       0.2128       0.6216 
+  22  rs12628695      83122    1   0.1591   0.1556    2     0.004195       0.9484        1.027 
+  22  rs12628369      83379    1   0.4545   0.4667    2      0.02631       0.8711       0.9524 
+  22  rs12627919      82186    1   0.3295   0.2111    2        3.169      0.07505        1.837 
+  22  rs12485231      82613    1   0.2614   0.3778    2         2.77      0.09604       0.5828 
+  22  rs12484228      83136    1  0.06818  0.04444    2       0.4728       0.4917        1.573 
+  22  rs12484213      82478    1  0.06818  0.07778    2      0.06052       0.8057       0.8676 
+  22  rs12483834      83241    1   0.2045   0.1333    2         1.61       0.2045        1.671 
+
+plink --bfile hapmap1 --assoc --adjust --out as2
+Writing this text to log file [ as2.log ]
+Analysis started: Thu Aug  6 02:18:47 2020
+
+Options in effect:
+	--bfile hapmap1
+	--assoc
+	--adjust
+	--out as2
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.99441
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 83534 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+Writing main association results to [ as2.assoc ] 
+Computing corrected significance values (FDR, Sidak, etc)
+Genomic inflation factor (based on median chi-squared) is 1.25377
+Mean chi-squared statistic is 1.14392
+Correcting for 68727 tests
+Writing multiple-test corrected significance values to [ as2.assoc.adjusted ] 
+
+Analysis finished: Thu Aug  6 02:18:48 2020
+
+plink --bfile hapmap1 --cluster --mc 2 --ppc 0.05 --out str1
+Web-based version check ( --noweb to skip )
+Recent cached web-check found...Problem connecting to web
+
+Writing this text to log file [ str1.log ]
+Analysis started: Thu Aug  6 02:23:33 2020
+
+Options in effect:
+	--bfile hapmap1
+	--cluster
+	--mc 2
+	--ppc 0.05
+	--out str1
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.99441
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 83534 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+Converting data to Individual-major format
+Clustering individuals based on genome-wide IBS
+Merge distance p-value constraint = 0.05
+Of these, 3570 are pairable based on constraints
+Writing cluster progress to [ str1.cluster0 ]
+Writing cluster solution (1) [ str1.cluster1 ]
+Writing cluster solution (2) [ str1.cluster2 ]
+Writing cluster solution (3) [ str1.cluster3 ]
+
+Analysis finished: Thu Aug  6 02:23:40 2020
+
+plink --bfile hapmap1 --mh --within str1.cluster2 --adjust --out aac1
+Web-based version check ( --noweb to skip )
+Recent cached web-check found...Problem connecting to web
+
+Writing this text to log file [ aac1.log ]
+Analysis started: Thu Aug  6 02:26:03 2020
+
+Options in effect:
+	--bfile hapmap1
+	--mh
+	--within str1.cluster2
+	--adjust
+	--out aac1
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Reading clusters from [ str1.cluster2 ]
+89 of 89 individuals assigned to 45 cluster(s)
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.99441
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 83534 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+Cochran-Mantel-Haenszel 2x2xK test, K = 45
+Writing results to [ aac1.cmh ]
+Computing corrected significance values (FDR, Sidak, etc)
+Genomic inflation factor (based on median chi-squared) is 1.07656
+Mean chi-squared statistic is 0.995208
+Correcting for 66852 tests
+Writing multiple-test corrected significance values to [ aac1.cmh.adjusted ] 
+
+Analysis finished: Thu Aug  6 02:26:05 2020
+
+plink --bfile hapmap1 --cluster --cc --ppc 0.01 --out version2
+Web-based version check ( --noweb to skip )
+Recent cached web-check found...Problem connecting to web
+
+Writing this text to log file [ version2.log ]
+Analysis started: Thu Aug  6 02:33:09 2020
+
+Options in effect:
+	--bfile hapmap1
+	--cluster
+	--cc
+	--ppc 0.01
+	--out version2
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.99441
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 83534 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+Converting data to Individual-major format
+Clustering individuals based on genome-wide IBS
+Merge distance p-value constraint = 0.01
+Of these, 3866 are pairable based on constraints
+Writing cluster progress to [ version2.cluster0 ]
+Writing cluster solution (1) [ version2.cluster1 ]
+Writing cluster solution (2) [ version2.cluster2 ]
+Writing cluster solution (3) [ version2.cluster3 ]
+
+Analysis finished: Thu Aug  6 02:33:16 2020
+
+plink --bfile hapmap1 --mh --within version2.cluster2 --adjust --out aac2
+Writing this text to log file [ aac2.log ]
+Analysis started: Thu Aug  6 02:33:29 2020
+
+Options in effect:
+	--bfile hapmap1
+	--mh
+	--within version2.cluster2
+	--adjust
+	--out aac2
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Reading clusters from [ version2.cluster2 ]
+89 of 89 individuals assigned to 5 cluster(s)
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.99441
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 83534 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+Cochran-Mantel-Haenszel 2x2xK test, K = 5
+Writing results to [ aac2.cmh ]
+Computing corrected significance values (FDR, Sidak, etc)
+Genomic inflation factor (based on median chi-squared) is 1.027
+Mean chi-squared statistic is 1.00914
+Correcting for 68727 tests
+Writing multiple-test corrected significance values to [ aac2.cmh.adjusted ] 
+
+Analysis finished: Thu Aug  6 02:33:30 2020
+
+[ylee00@cri16cn002 hapmap1]$ head aac2.cmh.adjusted
+ CHR         SNP      UNADJ         GC       BONF       HOLM   SIDAK_SS   SIDAK_SD     FDR_BH     FDR_BY
+   2   rs2222162  1.474e-08  2.276e-08   0.001013   0.001013   0.001013   0.001013   0.001013    0.01187 
+   2   rs4675607  1.134e-05  1.479e-05     0.7794     0.7794     0.5413     0.5413     0.2779          1 
+  13   rs9585021  1.213e-05   1.58e-05     0.8338     0.8338     0.5656     0.5656     0.2779          1 
+   9   rs7046471  3.372e-05  4.278e-05          1          1     0.9015     0.9015     0.4296          1 
+   2   rs4673349   3.75e-05  4.746e-05          1          1      0.924      0.924     0.4296          1 
+   2   rs1375352   3.75e-05  4.746e-05          1          1      0.924      0.924     0.4296          1 
+   4   rs6823804   4.49e-05  5.657e-05          1          1     0.9543     0.9543     0.4408          1 
+   6  rs13217899  9.432e-05  0.0001166          1          1     0.9985     0.9985     0.6869          1 
+   6   rs9488062  0.0001003  0.0001238          1          1      0.999      0.999     0.6869          1 
+
+plink --bfile hapmap1 --cluster --matrix --out ibd_view
+Web-based version check ( --noweb to skip )
+Recent cached web-check found...Problem connecting to web
+
+Writing this text to log file [ ibd_view.log ]
+Analysis started: Thu Aug  6 02:35:48 2020
+
+Options in effect:
+	--bfile hapmap1
+	--cluster
+	--matrix
+	--out ibd_view
+
+Reading map (extended format) from [ hapmap1.bim ] 
+83534 markers to be included from [ hapmap1.bim ]
+Reading pedigree information from [ hapmap1.fam ] 
+89 individuals read from [ hapmap1.fam ] 
+89 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+44 cases, 45 controls and 0 missing
+89 males, 0 females, and 0 of unspecified sex
+Reading genotype bitfile from [ hapmap1.bed ] 
+Detected that binary PED file is v1.00 SNP-major mode
+Before frequency and genotyping pruning, there are 83534 SNPs
+89 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.99441
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 83534 SNPs
+After filtering, 44 cases, 45 controls and 0 missing
+After filtering, 89 males, 0 females, and 0 of unspecified sex
+Converting data to Individual-major format
+Clustering individuals based on genome-wide IBS
+Merge distance p-value constraint = 0
+Writing IBS similarity matrix to [ ibd_view.mibs ]
+Of these, 3916 are pairable based on constraints
+Writing cluster progress to [ ibd_view.cluster0 ]
+Writing cluster solution (1) [ ibd_view.cluster1 ]
+Writing cluster solution (2) [ ibd_view.cluster2 ]
+Writing cluster solution (3) [ ibd_view.cluster3 ]
+
+Analysis finished: Thu Aug  6 02:35:55 2020
+
+### plots generated in R (R script and plots attached)
