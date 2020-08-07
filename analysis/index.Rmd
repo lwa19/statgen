@@ -14,3 +14,11 @@ This is a project affiliated with the University of Chicago BSCD Quantitative Bi
 
 ## Chapter 5
 Explanation of Hardy-Weinberg Equilibrium example in section 5.4 is recreated [here](statistical_power.html) with modified code and table. 
+
+## Chapter 16
+Since this book chapter is from 2008, we in fact followed a [newer tutorial](http://zzz.bwh.harvard.edu/plink/tutorial.shtml) for our plink exercise. Some results from the exercise are documented [here](plink.html)
+
+```{r, eval=FALSE, echo=FALSE}
+wflow_publish('analysis/index.Rmd', 'updated index')
+```
+
