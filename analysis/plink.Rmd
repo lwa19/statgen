@@ -1,0 +1,85 @@
+---
+title: "plink"
+author: "lwa19"
+date: "2020-08-06"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+In this document, I will demonstrate some output of our plink analysis. The example data contains randomly selected genotypes (approximately 80,000 autosomal SNPs) from the 89 Asian HapMap individuals. A phenotype has been simulated based on the genotype at one SNP, rs2222162. Plink analysis is modeled after the tutorial provided [here](http://zzz.bwh.harvard.edu/plink/tutorial.shtml)
+
+## Summary statistics: allele frequencies
+
+Allele frequency for each SNP stratifed by subpopulation:
+
+```{bash}
+head data/freq_stat.frq.strat
+```
+
+## Basic association analysis
+
+Each row is a single SNP association result. The fields are:
+
+- Chromosome
+
+- SNP identifier
+
+- Code for allele 1 (the minor, rare allele based on the entire sample frequencies)
+
+- The frequency of this variant in cases
+
+- The frequency of this variant in controls
+
+- Code for the other allele
+
+- The chi-squared statistic for this test (1 df)
+
+- The asymptotic significance value for this test
+
+- The odds ratio for this test
+
+```{bash}
+head data/as1.assoc
+```
+
+```{bash}
+sort --key=7 -nr data/as1.assoc | head
+```
+
+(I apologize for the ugly tables. Rmd seems to be incredibly bad at processing bash tables.)
+
+Sorted list of association results, that also includes a range of significance values that are adjusted for multiple testing: 
+
+```{bash}
+head data/as2.assoc.adjusted
+```
+
+The fields are: 
+
+- Chromosome
+
+- SNP identifier
+
+- Unadjusted, asymptotic significance value
+
+- Genomic control adjusted significance value. This is based on a simple estimation of the inflation factor based on median chi-square statistic. These values do not control for multiple testing therefore.
+
+- Bonferroni adjusted significance value
+
+- Holm step-down adjusted significance value
+
+- Sidak single-step adjusted significance value
+
+- Sidak step-down adjusted significance value
+
+- Benjamini & Hochberg (1995) step-up FDR control
+
+- Benjamini & Yekutieli (2001) step-up FDR control
+
+```{r workflow commands, eval=FALSE, echo=FALSE}
+wflow_publish('analysis/plink.Rmd', 'updated plink.Rmd')
+```
+
