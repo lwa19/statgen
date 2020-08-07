@@ -1,0 +1,24 @@
+PLINK v1.90b6.9 64-bit (4 Mar 2019)
+Options in effect:
+  --bfile hapmap1
+  --chr 1
+  --missing
+  --out res1
+
+Hostname: midway2-0012.rcc.local
+Working directory: /project2/qbio_summer/statgen/data
+Start time: Thu Aug  6 19:29:29 2020
+
+Random number seed: 1596760169
+63728 MB RAM detected; reserving 31864 MB for main workspace.
+6762 out of 83534 variants loaded from .bim file.
+89 people (89 males, 0 females) loaded from .fam.
+89 phenotype values loaded from .fam.
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 89 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.995545.
+--missing: Sample missing data report written to res1.imiss, and variant-based
+missing data report written to res1.lmiss.
+
+End time: Thu Aug  6 19:29:29 2020

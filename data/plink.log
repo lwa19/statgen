@@ -1,0 +1,15 @@
+PLINK v1.90b6.9 64-bit (4 Mar 2019)
+Options in effect:
+  --file hapmap1
+
+Hostname: midway2-0012.rcc.local
+Working directory: /project2/qbio_summer/statgen/data
+Start time: Thu Aug  6 19:18:43 2020
+
+Random number seed: 1596759523
+63728 MB RAM detected; reserving 31864 MB for main workspace.
+Scanning .ped file... done.
+Performing single-pass .bed write (83534 variants, 89 people).
+--file: plink.bed + plink.bim + plink.fam written.
+
+End time: Thu Aug  6 19:18:44 2020
